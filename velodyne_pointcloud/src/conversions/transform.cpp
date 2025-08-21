@@ -123,7 +123,7 @@ Transform::Transform(const rclcpp::NodeOptions & options)
     rclcpp::SensorDataQoS());
 
   velodyne_scan_ = this->create_subscription<velodyne_msgs::msg::VelodyneScan>(
-    "velodyne_packets", 10, std::bind(&Transform::processScan, this, std::placeholders::_1));
+    "velodyne_packets", rclcpp::SensorDataQoS(), std::bind(&Transform::processScan, this, std::placeholders::_1));
 
   // Diagnostics
   diagnostics_.setHardwareID("Velodyne Transform");
